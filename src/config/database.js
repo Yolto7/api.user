@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const dbConnection = async () => {
   try {
-    const host = "mongodb+srv://joaquin:1qazxcvfr4JN@coffeedb.5h14h.mongodb.net/coffeeDB";
+    const host = process.env.HOST_DATABASE;
 
     await mongoose.connect(host);
     console.log("Database connected");

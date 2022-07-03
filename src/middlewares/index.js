@@ -1,32 +1,11 @@
-const bcrypt = require("bcryptjs");
+
 const jwt = require("jsonwebtoken");
 const User = require("../models/user")
 const helpers = {};
 
 //MAKING THE FUNCTIONS
-helpers.encryptPassword = async (password) => {
-  try {
-    const salt = await bcrypt.genSalt(15);
-    const hash = await bcrypt.hash(password, salt);
-
-    return hash;
-  } 
-  catch (err) {
-    throw err;
-  }
-};
-
-helpers.matchPassword = async (password, savedPassword) => {
-  try {
-    return await bcrypt.compare(password, savedPassword);
-  } 
-  catch (err) {
-    throw err;
-  }
-};
-
 helpers.createToken = async (data) => {
-  const token = jwt.sign({ data }, "CLINICA", {
+  const token = jwt.sign({ data }, process.env.JWT_SECRET, {
     expiresIn: 60*60*24*30,
   });
 
@@ -41,7 +20,7 @@ helpers.verifyToken = async (req, res, next) => {
     }
 
     const token = bearer.split(" ")[1];
-    const result = jwt.verify(token, "CLINICA");
+    const result = jwt.verify(token, process.env.JWT_SECRET);
 
     const user = await User.find({id: result.id});
 
