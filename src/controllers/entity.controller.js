@@ -1,9 +1,10 @@
 const entityService = require("../services/entity.service");
 
 class Controller {
-  async get(_req, res) {
+  async getById(req, res) {
+    const { id } = req.params
     try {
-      const users = await entityService.get();
+      const users = await entityService.getById(id);
       res.status(200).json({ data: users, status: true });
     } 
     catch (err) {
@@ -97,7 +98,6 @@ class Controller {
       res.status(200).json({ data: token, status: true });
     } 
     catch (err) {
-      console.log(err)
       res.status(400).json({ msg: err.message, status: false });
     }
   }

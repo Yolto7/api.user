@@ -2,8 +2,8 @@ const entityRepository = require('../repositories/entity.repository');
 
 class EntityService {
 
-  async get() {
-    return await entityRepository.get()
+  async getById(id) {
+    return await entityRepository.getById(id);
   }
 
   async create(entity) {

@@ -3,7 +3,7 @@ const { verifyToken } = require('../middlewares')
 const controller = require('../controllers/entity.controller');
 const router = Router();
 
-router.get('/', verifyToken, controller.get);
+router.get('/:id', verifyToken, controller.getById);
 
 router.post('/', controller.create);
 

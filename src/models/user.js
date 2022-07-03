@@ -46,12 +46,12 @@ schema.methods.encryptPassword = async (password) => {
   return await bcrypt.hash(password, salt);
 };
 
-schema.methods.matchPassword = async function (password) {
-  return await bcrypt.compare(password, this.password);
+schema.methods.matchPassword = async (password, passwordSaved) => {
+  return await bcrypt.compare(password, passwordSaved);
 };
 
 schema.methods.toJSON = function () {
-  const { __v, _id, ...user } = this.toObject();
+  const { __v, _id, password, type, ...user } = this.toObject();
   user.id = _id;
   return user;
 };
