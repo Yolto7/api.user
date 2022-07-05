@@ -14,7 +14,7 @@ class EntityRepository {
   }
 
   async update(id, entity) {
-    return await User.findByIdAndUpdate(id, entity, {new: true});
+    return await User.findByIdAndUpdate(id, entity, { new: true });
   }
 
   async delete(id) {

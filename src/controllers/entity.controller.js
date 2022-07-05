@@ -83,8 +83,8 @@ class Controller {
     const { id } = req.params;
 
     try {
-      await entityService.delete(id);
-      res.status(200).json({ data: null, status: true });
+      const user = await entityService.delete(id);
+      res.status(200).json({ data: user, status: true });
     } 
     catch (err) {
       res.status(400).json({ msg: err.message, status: false });
