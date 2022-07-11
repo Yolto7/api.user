@@ -1,6 +1,18 @@
 const entityService = require("../services/entity.service");
 
 class Controller {
+  static instance
+  entityService
+
+  constructor(entityService) {
+    if(!!Controller.instance) {
+      return Controller.instance;
+    }
+
+    Controller.instance = this;
+    this.entityService = entityService;
+  }
+
   async getById(req, res) {
     const { id } = req.params
     try {
@@ -103,4 +115,4 @@ class Controller {
   }
 }
 
-module.exports = new Controller();
+module.exports = new Controller(entityService);

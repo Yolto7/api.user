@@ -56,6 +56,4 @@ schema.methods.toJSON = function () {
   return user;
 };
 
-schema
-
 module.exports = model("User", schema);

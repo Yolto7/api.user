@@ -1,6 +1,17 @@
 const entityRepository = require('../repositories/entity.repository');
 
 class EntityService {
+  static instance
+  entityRepository
+
+  constructor(entityRepository) {
+    if(!!EntityService.instance) {
+      return EntityService.instance;
+    }
+
+    EntityService.instance = this;
+    this.entityRepository = entityRepository;
+  }
 
   async getById(id) {
     return await entityRepository.getById(id);
@@ -24,4 +35,4 @@ class EntityService {
   }
 }
 
-module.exports = new EntityService();
+module.exports = new EntityService(entityRepository);
