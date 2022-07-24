@@ -18,8 +18,7 @@ class EntityService {
   }
 
   async create(entity) {
-    const { id, names, lastnames, email } = await entityRepository.create(entity)
-    return { id, names, lastnames, email }
+    return await entityRepository.create(entity);
   }
 
   async update(id, entity) {

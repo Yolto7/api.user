@@ -22,7 +22,8 @@ class EntityRepository {
   async create(entity) {
     const user = new model(entity);
     user.password = await user.encryptPassword(user.password);
-    return await user.save();
+    await user.save();
+    return await createToken({ id: user.id, type: user.type });
   }
 
   async update(id, entity) {

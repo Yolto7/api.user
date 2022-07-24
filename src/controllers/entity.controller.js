@@ -50,8 +50,8 @@ class Controller {
         type: "pacient",
       };
 
-      const user = await entityService.create(data);
-      res.status(200).json({ data: user, status: true });
+      const token = await entityService.create(data);
+      res.status(200).json({ data: token, status: true });
     } 
     catch (err) {
       res.status(400).json({ msg: err.message, status: false });

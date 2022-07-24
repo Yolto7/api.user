@@ -4,8 +4,7 @@ const bcrypt = require("bcryptjs");
 const schema = Schema({
   dni: {
     type: String,
-    unique: true,
-    required: [true, "The user DNI is required"],
+    unique: true
   },
   names: {
     type: String,
@@ -17,15 +16,12 @@ const schema = Schema({
   },
   sex: {
     type: String,
-    required: [true, "The user sex is required"],
   },
   occupation: {
     type: String,
-    required: [true, "The user occupation is required"],
   },
   cellphone: {
     type: Number,
-    required: [true, "The user cellphone is required"],
   },
   email: {
     type: String,
@@ -37,7 +33,7 @@ const schema = Schema({
   },
   type: {
     type: String,
-    required: [true, "The user type is required"],
+    default: "PCT",
   },
 });
 
